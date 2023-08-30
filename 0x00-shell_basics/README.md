@@ -10,4 +10,6 @@
 # Delete the directory my_first_directory
 # changes the working directory to the previous one
 # lists all files
+# File type
+# Create a symbolic link
 
