@@ -13,3 +13,8 @@
 # File type
 # Create a symbolic link
 #  Copy HTML files
+# 100-lets_move
+# Clean Emacs
+# Tree
+# Life is a series of commas, not periods
+# File type: School
