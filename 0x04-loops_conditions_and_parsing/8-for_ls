@@ -2,6 +2,7 @@
 # The content of the current directory
 
 command=$(ls)
-for i in $command; do
+for i in $command;
+do
     echo "$i" | cut -d '-' -f 2
 done
