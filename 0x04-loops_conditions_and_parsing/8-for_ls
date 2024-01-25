@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # The content of the current directory
 
-command=$(ls -1 | grep -v '^\.')
+command=$(ls -1)
 for i in $command;
 do
     echo "$i" | cut -d '-' -f 2
