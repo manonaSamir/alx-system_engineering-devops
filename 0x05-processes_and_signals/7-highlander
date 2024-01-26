@@ -3,7 +3,6 @@
 # shellcheck disable=SC2009
 
 STATUS=0
-
 while [ $STATUS = 0 ]
 do
     echo "To infinity and beyond"
