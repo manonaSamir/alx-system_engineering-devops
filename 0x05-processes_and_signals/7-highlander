@@ -2,11 +2,11 @@
 # stop To infinity and beyond indefinitely.
 # shellcheck disable=SC2009
 
-
-while true
+STATUS=0
+while [ $STATUS = 0 ]
 do
     echo "To infinity and beyond"
     sleep 2
     trap 'echo "I am invincible"' SIGTERM
-
+    STATUS=$?
 done
