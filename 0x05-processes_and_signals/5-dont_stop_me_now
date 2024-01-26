@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# displays To infinity and beyond indefinitely.
+# shellcheck disable=SC2009
+
+pgrep -f "./4-to_infinity_and_beyond" | xargs kill
