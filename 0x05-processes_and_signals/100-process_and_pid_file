@@ -1,0 +1,18 @@
+
+FILE=/var/run/myscript.pid
+echo "$$" > $FILE
+
+function QUIT {
+    rm $FILE
+    kill -SIGKILL
+}
+
+trap 'echo "Y U no love me?!"' SIGINT
+trap 'echo "I hate the kill command" && QUIT' SIGTERM
+trap 'QUIT' SIGQUIT
+
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+done
