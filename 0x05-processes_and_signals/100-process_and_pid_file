@@ -1,16 +1,11 @@
+#!/usr/bin/env bash
+# stop To infinity and beyond indefinitely.
 
 FILE=/var/run/myscript.pid
-echo "$$" > $FILE
-
-function QUIT {
-    rm $FILE
-    kill -SIGKILL
-}
-
 trap 'echo "Y U no love me?!"' SIGINT
-trap 'echo "I hate the kill command" && QUIT' SIGTERM
-trap 'QUIT' SIGQUIT
-
+trap 'echo "I hate the kill command" && rm $FILE; exit' SIGTERM
+trap 'rm $FILE; exit' SIGQUIT
+echo "$$" > $FILE
 while true
 do
     echo "To infinity and beyond"
