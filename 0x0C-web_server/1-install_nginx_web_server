@@ -1,8 +1,30 @@
 #!/usr/bin/env bash
 # Installs Nginx server
 
-apt-get -y update
-apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-service nginx start
+#!/bin/bash
+
+# Update package lists
+apt-get update
+
+# Install nginx
+apt-get install -y nginx
+
+# Set nginx to listen on port 80
+sed -i 's/^listen\(.*\)80;/listen 80;/' /etc/nginx/sites-available/default
+
+# Restart nginx without using systemctl
+kill -s HUP $(pgrep nginx)
+
+# Create HTML file with "Hello World!"
+echo "<html><body><h1>Hello World!</h1></body></html>" > /var/www/html/index.html
+
+# Verify nginx configuration
+nginx -t
+
+# If nginx configuration is valid, reload nginx
+if [ $? -eq 0 ]; then
+    kill -s HUP $(pgrep nginx)
+    echo "Nginx reloaded successfully."
+else
+    echo "Nginx configuration test failed. Please check the configuration."
+fi
