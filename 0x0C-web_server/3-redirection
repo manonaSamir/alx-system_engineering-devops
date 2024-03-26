@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 # Configure your Nginx server so that /redirect_me is redirecting to another page.
 
+# Update package lists and install nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo 'Hello World!' > /var/www/html/index.nginx-debian.html
-service nginx start
 
-new_config=\
-"server {
+# Allow Nginx HTTP traffic
+sudo ufw allow 'Nginx HTTP'
+
+# Create a basic HTML file
+echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+
+# Start Nginx service
+sudo service nginx start
+
+# Define Nginx server configuration
+new_config=$(cat <<EOF
+server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
@@ -22,14 +30,18 @@ new_config=\
     }
 
     location / {
-        try_files $uri $uri/ =404;
+        try_files \$uri \$uri/ =404;
     }
-}"
+}
+EOF
+)
 
-echo "$new_config" > /etc/nginx/sites-available/default
-if [ "$(pgrep nginx)" -le 0 ];
-then
-    service nginx start
+# Write Nginx configuration to default site configuration file
+echo "$new_config" | sudo tee /etc/nginx/sites-available/default >/dev/null
+
+# Restart Nginx service if it's already running, otherwise start it
+if pgrep nginx >/dev/null; then
+    sudo service nginx restart
 else
-    service nginx restart
-fi;
+    sudo service nginx start
+fi
