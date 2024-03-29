@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
 # Check if the user provided a file to run
+
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 <file_to_run_in_server>"
     exit 1
