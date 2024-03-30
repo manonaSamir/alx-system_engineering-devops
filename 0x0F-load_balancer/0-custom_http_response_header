@@ -2,10 +2,10 @@
 # configures a brand new Ubuntu machine to the requirements asked in this task
 # shellcheck disable=SC2154
 
-hostname=$(hostname)
 sudo apt-get -y update
 sudo apt-get -y install nginx
+service nginx start
 sudo chown -R "$USER":"$USER" /var/www/html/index.nginx-debian.html
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html >/dev/null
-sudo sed -i "/http {/a \        add_header X-Served-By \"$hostname\";" /etc/nginx/nginx.conf
-sudo service nginx restart
+sudo sed -i "11i\\\tadd_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html >/dev/null
+service nginx start
