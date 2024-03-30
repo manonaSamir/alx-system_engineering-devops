@@ -5,7 +5,7 @@
 hostname=$(hostname)
 sudo apt-get -y update
 sudo apt-get -y install nginx
-sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
-sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo chown -R "$USER":"$USER" /var/www/html/index.nginx-debian.html
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html >/dev/null
 sudo sed -i "/http {/a \        add_header X-Served-By \"$hostname\";" /etc/nginx/nginx.conf
 sudo service nginx restart
