@@ -1,6 +1,27 @@
 #!/usr/bin/env bash
 #  Run Nginx as Nginx
 
-sed -i 's/user\s*nginx;/user nginx;/' /etc/nginx/nginx.conf
-sed -i 's/listen\s*80;/listen 8080;/g' /etc/nginx/sites-available/default
+
+NGINX_CONF="/etc/nginx/nginx.conf"
+NGINX_DEFAULT_CONF="/etc/nginx/sites-available/default"
+
+# Check if nginx.conf exists
+if [ ! -f "$NGINX_CONF" ]; then
+    echo "Error: Nginx configuration file not found at $NGINX_CONF"
+    exit 1
+fi
+
+# Update Nginx configuration to run as nginx user
+sed -i 's/user\s*nginx;/user nginx;/' "$NGINX_CONF"
+
+# Check if default site configuration exists
+if [ ! -f "$NGINX_DEFAULT_CONF" ]; then
+    echo "Error: Nginx default site configuration not found at $NGINX_DEFAULT_CONF"
+    exit 1
+fi
+
+# Modify Nginx default site configuration to listen on port 8080
+sed -i 's/listen\s*80;/listen 8080;/g' "$NGINX_DEFAULT_CONF"
+
+# Restart Nginx to apply changes
 service nginx restart
