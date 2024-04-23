@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # csv exported
+"""gets api"""
 import csv
 from requests import get
 from sys import argv
