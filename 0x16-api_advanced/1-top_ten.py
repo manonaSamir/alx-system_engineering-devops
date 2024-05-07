@@ -8,7 +8,7 @@ def top_ten(subreddit):
     """Gets top 10 most host posts of a subreddit using reddit api."""
     headers = {'User-Agent': 'alxAPI'}
 
-    res = requests.get('https://www.reddit.com/r/{}/hot.json'
+    res = requests.get('https://www.reddit.com/r/{}/hot.json?limit=10'
                        .format(subreddit),
                        headers=headers, allow_redirects=False)
 
