@@ -11,7 +11,7 @@ def recurse(subreddit, hot_list=[], params=None):
     headers = {'User-Agent': 'alxAPI'}
 
     res = requests.get(
-        'https://www.reddit.com/r/{}/hot.json'.format(subreddit),
+        'https://www.reddit.com/r/{}/hot.json?limit=10'.format(subreddit),
         headers=headers,
         allow_redirects=False,
         params=params
