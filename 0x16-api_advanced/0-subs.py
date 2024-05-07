@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-'returns the number of subscribers '
+"""returns the number of subscribers"""
 import requests
 
 
