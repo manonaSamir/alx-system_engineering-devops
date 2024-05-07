@@ -6,6 +6,7 @@ from requests.auth import HTTPBasicAuth
 
 
 def number_of_subscribers(subreddit):
+    """returns the number of subscribers"""
     headers = {'User-Agent': 'alxAPI'}
     res = requests.get(
         'https://www.reddit.com/r/{}/about.json'.format(subreddit),
