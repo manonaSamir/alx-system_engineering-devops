@@ -2,7 +2,6 @@
 
 """returns the number of subscribers"""
 import requests
-from requests.auth import HTTPBasicAuth
 
 
 def number_of_subscribers(subreddit):
