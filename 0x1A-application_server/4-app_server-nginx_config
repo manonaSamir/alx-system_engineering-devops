@@ -1,4 +1,4 @@
-#3-app_server-nginx_config
+# 3-app_server-nginx_config
 
 server {
         listen 80 default_server;
