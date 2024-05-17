@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 # Gracefully reloads Gunicorn.
 
-pgrep gunicorn | awk '{ print $2 }' | xargs kill -HUP
+# Find the PIDs of Gunicorn processes and send the HUP signal to each.
+pgrep gunicorn | xargs kill -HUP
+
+echo "Gunicorn processes have been gracefully reloaded."
